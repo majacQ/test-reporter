@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/buildpulse/test-reporter/internal/logger"
-	"gopkg.in/yaml.v2"
+	"gopkg.in/yaml.v3"
 )
 
 // A Metadata instance provides metadata about a set of test results. It
@@ -25,9 +25,11 @@ type Metadata struct {
 	CommittedAt          time.Time `yaml:":committed_at,omitempty"`
 	CommitterEmail       string    `yaml:":committer_email,omitempty"`
 	CommitterName        string    `yaml:":committer_name,omitempty"`
+	QuotaID              string    `yaml:":quota_id,omitempty"`
 	RepoNameWithOwner    string    `yaml:":repo_name_with_owner"`
 	ReporterOS           string    `yaml:":reporter_os"`
 	ReporterVersion      string    `yaml:":reporter_version"`
+	Tags                 []string  `yaml:":tags,omitempty"`
 	Timestamp            time.Time `yaml:":timestamp"`
 	TreeSHA              string    `yaml:":tree,omitempty"`
 
@@ -36,7 +38,7 @@ type Metadata struct {
 }
 
 // NewMetadata creates a new Metadata instance from the given args.
-func NewMetadata(version *Version, envs map[string]string, resolver CommitResolver, now func() time.Time, logger logger.Logger) (*Metadata, error) {
+func NewMetadata(version *Version, envs map[string]string, tags []string, quotaID string, resolver CommitResolver, now func() time.Time, logger logger.Logger) (*Metadata, error) {
 	m := &Metadata{logger: logger}
 
 	if err := m.initProviderData(envs); err != nil {
@@ -49,6 +51,9 @@ func NewMetadata(version *Version, envs map[string]string, resolver CommitResolv
 
 	m.initTimestamp(now)
 	m.initVersionData(version)
+
+	m.QuotaID = quotaID
+	m.Tags = tags
 
 	return m, nil
 }

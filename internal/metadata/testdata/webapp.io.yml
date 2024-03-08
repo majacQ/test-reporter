@@ -1,10 +1,10 @@
 :authored_at: 2020-07-09T04:05:06-05:00
 :author_email: some-author@example.com
 :author_name: Some Author
-:branch: some-feature
-:build_url: https://github.com/some-owner/some-repo/actions/runs/8675309/attempts/1
-:check: github-actions
-:ci_provider: github-actions
+:branch: some-branch
+:build_url: https://webapp.io/some-org/some-repo/42/main-layerfile-1
+:check: webapp.io
+:ci_provider: webapp.io
 :commit_message: Some message
 :commit_metadata_source: Static
 :commit: 1f192ff735f887dd7a25229b2ece0422d17931f5
@@ -16,13 +16,4 @@
 :reporter_version: v1.2.3
 :timestamp: 2020-07-11T01:02:03Z
 :tree: 0da9df599c02da5e7f5058b7108dcd5e1929a0fe
-:github_actor: some-user
-:github_base_ref: refs/heads/main
-:github_event_name: push
-:github_head_ref: refs/heads/some-feature
-:github_ref: refs/heads/some-feature
-:github_repo_url: https://github.com/some-owner/some-repo
-:github_run_attempt: 1
-:github_run_id: 8675309
-:github_run_number: 42
-:github_workflow: build
+:retry_index: 1
